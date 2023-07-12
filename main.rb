@@ -6,8 +6,6 @@ require './guesser'
 CODE_LENGTH = 4
 NUMBER_GUESSES = 12
 
-
-
 puts 'Play as Code Creator or Guesser?'
 puts '0 -> Creator'
 puts '1 -> Guesser'
@@ -15,7 +13,7 @@ puts '1 -> Guesser'
 creator = Creator.new(CODE_LENGTH, gets.to_i == 1)
 creator.create_code
 
-guesser = Guesser.new(NUMBER_GUESSES)
+guesser = Guesser.new(CODE_LENGTH, NUMBER_GUESSES, !creator.is_computer)
 
 while guesser.guesses.positive?
   puts "Remaining guesses: #{guesser.guesses} / #{NUMBER_GUESSES}"
@@ -23,6 +21,8 @@ while guesser.guesses.positive?
   guess = guesser.make_guess[..CODE_LENGTH]
   correct_positions = creator.feedback(guess)
   puts "Correct: #{correct_positions} / #{CODE_LENGTH}"
+  break if correct_positions == CODE_LENGTH
+
   puts '=========='
 end
 

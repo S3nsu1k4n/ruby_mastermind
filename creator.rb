@@ -2,7 +2,7 @@
 
 # The one who has to create the code
 class Creator
-  attr_reader :code
+  attr_reader :code, :is_computer
 
   def initialize(code_length, is_computer)
     @code_length = code_length
@@ -13,12 +13,10 @@ class Creator
   def create_code
     if @is_computer
       @code = generate_random_code
+      puts 'Computer created code'
     else
       puts "Create a code with #{@code_length} numbers"
-      @code = gets.gsub("\n", '')[..4]
-      until @code.length == @code_length
-        @code = gets.gsub("\n", '')[..4]
-      end
+      @code = gets.gsub("\n", '')[..4].split('') until @code.length == @code_length
     end
   end
 
