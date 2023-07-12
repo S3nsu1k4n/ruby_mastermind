@@ -6,7 +6,13 @@ require './guesser'
 CODE_LENGTH = 4
 NUMBER_GUESSES = 12
 
-creator = Creator.new(CODE_LENGTH)
+
+
+puts 'Play as Code Creator or Guesser?'
+puts '0 -> Creator'
+puts '1 -> Guesser'
+
+creator = Creator.new(CODE_LENGTH, gets.to_i == 1)
 creator.create_code
 
 guesser = Guesser.new(NUMBER_GUESSES)

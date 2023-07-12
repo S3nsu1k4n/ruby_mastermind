@@ -4,14 +4,22 @@
 class Creator
   attr_reader :code
 
-  def initialize(code_length, is_computer: false)
+  def initialize(code_length, is_computer)
     @code_length = code_length
     @code = ''
     @is_computer = is_computer
   end
 
-  def create_code(code = generate_random_code)
-    @code = code
+  def create_code
+    if @is_computer
+      @code = generate_random_code
+    else
+      puts "Create a code with #{@code_length} numbers"
+      @code = gets.gsub("\n", '')[..4]
+      until @code.length == @code_length
+        @code = gets.gsub("\n", '')[..4]
+      end
+    end
   end
 
   def generate_random_code
