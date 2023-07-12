@@ -2,14 +2,20 @@
 
 # The one who has to create the code
 class Creator
+  attr_reader :code
+
   def initialize(code_length, is_computer: false)
     @code_length = code_length
     @code = ''
     @is_computer = is_computer
   end
 
-  def create_code(code = '1234')
-    @code = code.split('')
+  def create_code(code = generate_random_code)
+    @code = code
+  end
+
+  def generate_random_code
+    (0..@code_length - 1).map { rand(9).to_s }
   end
 
   def feedback(guessed_code)
